@@ -49,7 +49,7 @@ The dataset consists of 53 regular attributes to these events, as sequence numbe
 * Data URL: https://www.kaggle.com/datasets/prasad22/global-economy-indicators
 
 ### ETL Pipeline:
-
+::: mermaid
 flowchart TB
   subgraph SUB0[ETL Pipeline: pipeline.py]
     direction LR
