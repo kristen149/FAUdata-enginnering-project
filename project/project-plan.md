@@ -49,7 +49,7 @@ The dataset consists of 53 regular attributes to these events, as sequence numbe
 * Data URL: https://www.kaggle.com/datasets/prasad22/global-economy-indicators
 
 ### ETL Pipeline:
-::: mermaid
+``` mermaid
 flowchart TB
   subgraph SUB0[ETL Pipeline: pipeline.py]
     direction LR
@@ -60,7 +60,7 @@ flowchart TB
     SEA_extreme_weather_event.csv] --data.opendevelopmentmekong.net--> SUB0 --> db[("Storage: database.sqlite")] --> G[Reporting & Analytics] 
   B[Dataset 2:
     SEA_economy_indicators.csv] --kaggle.com --> SUB0
-
+```
 ## Limitation on the datasets:
 * Although Vietnam is a very fast developing country, its information was somehow missing in the economy dataset. Thus readers have no insight to this country. 
 
