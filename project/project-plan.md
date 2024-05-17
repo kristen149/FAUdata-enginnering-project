@@ -99,7 +99,7 @@ flowchart TB
   A[Dataset 1:
     SEA_extreme_weather_events.csv] --data.opendevelopmentmekong.net--> SUB0 --> db1[("Storage: weather_events.sqlite")] --> G[Reporting & Analytics] 
   B[Dataset 2:
-    SEA_societal_indicators.csv] --kaggle.com --> SUB1 
+    SEA_socioeconomics.csv] --kaggle.com --> SUB1 
   C[Dataset 3:
     SEA_disaster_risk.csv] --kaggle.com --> SUB1
   SUB1 --> db2[("Storage: socialeconomic_risk.sqlite")] --> G[Reporting & Analytics]
