@@ -34,7 +34,7 @@ Some key questions will be answered by this project:
 
 * Data Type: CSV
 
-License: [CC BY-SA 3.0 DEED License](https://creativecommons.org/licenses/by-sa/3.0/)
+* License: [CC BY-SA 3.0 DEED License](https://creativecommons.org/licenses/by-sa/3.0/)
 
 Overview:
 From 1909 to 2021, 2737 extreme weather events have been recorded. 
@@ -79,18 +79,18 @@ The dataset includes 19 years data of multiple countries with the following feat
 
 | Number |      Feature Name            |      Description                             |
 |--------|------------------------------|----------------------------------------------|
-|   0    |  Region                      |  Name of the region                          |
-|   1    |  WRI                         |  World Risk Score of the region              |
-|   2    |  Exposure                    |  Risk/exposure to natural hazards such as earthquakes, hurricanes, floods, droughts, and sea ​​level rise                          |
-|   3    |  Vulnerability               |  Vulnerability depending on infrastructure, nutrition, housing situation, and economic framework conditions                        |
-|   4    |  Susceptibility              |  Susceptibility depending on infrastructure, nutrition, housing situation, and economic framework conditions                        |
+|   0    |    Region                    |  Name of the region                          |
+|   1    |    WRI                       |  World Risk Score of the region              |
+|   2    |    Exposure                  |  Risk/exposure to natural hazards such as earthquakes, hurricanes, floods, droughts, and sea ​​level rise                          |
+|   3    |    Vulnerability             |  Vulnerability depending on infrastructure, nutrition, housing situation, and economic framework conditions                        |
+|   4    |    Susceptibility            |  Susceptibility depending on infrastructure, nutrition, housing situation, and economic framework conditions                        |
 |   5    |  Lack of Coping Capabilities |  Coping capacities in dependence of governance, preparedness and early warning, medical care, and social and material security                                                                               |
-|   6    |  Year (2011-2021)            |  Adaptive capacities related to coming natural events, climate change, and other challenges                                           |
-|   7    |  WRI Category                |  Year data is being described                |
+|   6    |    Year (2011-2021)          |  Adaptive capacities related to coming natural events, climate change, and other challenges                                           |
+|   7    |    WRI Category              |  Year data is being described                |
 |   8    |  Lack of Coping Capabilities |  WRI Category for the given WRI Score                                                                                  |
-|   9    |  Exposure Category           |  Exposure Category for the given Exposure Score                                                                                  |
-|   10   |  Vulnerability Categoy       |  Vulnerability Category for the given Vulnerability Score                                                                    |
-|   11   |  Susceptibility Category     |  Susceptibility Category for the given Susceptibility Score                                                                   |
+|   9    |    Exposure Category         |  Exposure Category for the given Exposure Score                                                                                  |
+|   10   |    Vulnerability Categoy     |  Vulnerability Category for the given Vulnerability Score                                                                    |
+|   11   |    Susceptibility Category   |  Susceptibility Category for the given Susceptibility Score                                                                   |
 
 ### ETL Pipeline:
 ``` mermaid
