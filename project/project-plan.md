@@ -126,9 +126,9 @@ flowchart TB
   
   A[Dataset 1:
     SEA_extreme_weather_events] --data.opendevelopmentmekong.net--> SUB0 --Sqlite database with 3 tables--> db1[("database.sqlite
-     1. extreme_weather_events
-     2. socioeconomics
-     3. disaster_risk")] --> G[Analytics and Reporting] 
+     Table 1. extreme_weather_events
+     Table 2. socioeconomics
+     Table 3. disaster_risk")] --> G[Analytics and Reporting] 
   B[Dataset 2:
     SEA_socioeconomics] --kaggle.com --> SUB0 
   C[Dataset 3:
