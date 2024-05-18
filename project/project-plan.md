@@ -41,6 +41,36 @@ From 1909 to 2021, 2737 extreme weather events have been recorded.
 
 The dataset consists of 53 regular attributes to these events, as sequence number, disaster coding code, year, disaster group, disaster type group, disaster type, event name, water, country, location, longitude, latitude, local time, start date, end date, total number of deaths, total losses...
 
+#### Data overview:
+Among the 53 regular attributes in the dataset, the most important ones were chosen as follows:
+1. Year: The year the disaster occurred
+2. Disaster Group: Category of the disaster (ex. natural or technological)
+3. Disaster Subgroup: More specific category within the main disaster group (ex. geophysical, biological, meteoroligical...)
+4. Disaster Type: Specific type of disaster (ex. epidemic, drought, flood, storm...)
+5. Disaster Subtype: Further type of disaster (ex. drought, tsunami, landslide...)
+6. Event Name: Name of the disaster event (ex. Winnie, MD-82, Dengue...)
+7. Country: Country where the disaster occurred (ex. 11 countries including Singapore, Thailand, Vietnam...)
+8. ISO: The country code (ex. Indonesia - IDN, Philippines - PHL, Thailand - THA...)
+9. Location: General location affected by the disaster (values are not consistent, range from country, state, province, city...)
+10. Origin: Reason for the disaster (ex. heavy rains, storm, overpassing....).
+11. Associated Dis: Related disaster events (ex. rain, pollution, oil spill, cold wave...)
+12. Appeal: International appeals for assistance (values are either yes, no, or NULL)
+13. Declaration: Declarations made regarding the disaster (values are either yes, no, or NULL)
+14. Aid Contribution: Amount of aid contributed (US dollars) regarding the disaster
+15. Dis Mag Value: Numerical value measuring the magnitude of the disaster
+16. Dis Mag Scale: Scale measuring the disaster’s magnitude, such as KPH, Richter, m3, Km2... 
+17. Local Time: Local time when the disaster occurred
+18. Total Deaths: Total number of deaths caused by the disaster
+19. No Injured: Number of individuals injured due to the disaster
+20. No Affected: Number of individuals affected due to the disaster
+21. No Homeless: Number of individuals rendered homeless due to the disaster
+22. Total Affected: Total of injured, affected, and homeless individuals
+23. Insured Damages (‘000 US$): Estimated damages in thousands of US dollars covered by insurance
+24. Total Damages (‘000 US$): Total estimated damages in thousands of US dollars due to the disaster
+25. CPI: Consumer Price Index at the time of the disaster
+26. Geo Locations: Specific location affected by the disaster
+
+
 
 ### Datasource2: Southeast Asian Socioeconomics
 * Metadata URL: https://www.kaggle.com/datasets/mjshri23/life-expectancy-and-socio-economic-world-bank
@@ -48,15 +78,16 @@ The dataset consists of 53 regular attributes to these events, as sequence numbe
 * Data Type: CSV
 * License: [World Bank Dataset Terms of Use](https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets)
 
-The dataset includes 19 years data of multiple countries with the following features:
+#### Data overview:
+The dataset includes 19 years data of multiple countries with the following attributes:
 1. Country - 174 countries
 2. Country Code - 3-letter code
 3. Region - region of the world country is located in
 4. IncomeGroup - country's income class
 5. Year (2000-2019)
-6. Life expectancy
-7. Prevalence of Undernourishment (% of the population) 
-8. Carbon dioxide emissions (kiloton)
+6. Life expectancy: the average number of years a person is expected to live, based on current mortality rates
+7. Prevalence of Undernourishment (% of the population): refers to the percentage of a population that does not have enough dietary energy intake to meet the minimum requirements for a healthy and active life 
+8. Carbon dioxide emissions (kiloton): a mesure of the amount of CO2 released into the atmosphere, from fossil fuels, industrial processes...
 9. Health Expenditure (% of GDP)
 10. Education Expenditure (% of GDP)
 11. Unemployment (% total labor force)
@@ -73,35 +104,34 @@ The dataset includes 19 years data of multiple countries with the following feat
 * Data Type: CSV
 * License: [CC0: Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
 
- Description:
+#### Data overview:
  The dataset conceptually combines the exposure to extreme natural hazards with the societal vulnerability of individual countries. The exposure analysis takes into account earthquakes, cyclones, floods, droughts, and climate-induced sea-level rise. Societal vulnerability is divided into susceptibility to extreme natural events, lack of coping capacities, and lack of adaptive capacities. All components of the index are scaled from 0 to 100. A higher score on the WorldRiskIndex signifies a greater national disaster risk.
 
 
-| Number |      Feature Name            |      Description                             |
-|--------|------------------------------|----------------------------------------------|
-|   0    |    Region                    |  Name of the region                          |
-|   1    |    WRI                       |  World Risk Score of the region              |
-|   2    |    Exposure                  |  Risk/exposure to natural hazards such as earthquakes, hurricanes, floods, droughts, and sea ​​level rise                          |
-|   3    |    Vulnerability             |  Vulnerability depending on infrastructure, nutrition, housing situation, and economic framework conditions                        |
-|   4    |    Susceptibility            |  Susceptibility depending on infrastructure, nutrition, housing situation, and economic framework conditions                        |
-|   5    |  Lack of Coping Capabilities |  Coping capacities in dependence of governance, preparedness and early warning, medical care, and social and material security                                                                               |
-|   6    |    Year (2011-2021)          |  Adaptive capacities related to coming natural events, climate change, and other challenges                                           |
-|   7    |    WRI Category              |  Year data is being described                |
-|   8    |  Lack of Coping Capabilities |  WRI Category for the given WRI Score                                                                                  |
-|   9    |    Exposure Category         |  Exposure Category for the given Exposure Score                                                                                  |
-|   10   |    Vulnerability Categoy     |  Vulnerability Category for the given Vulnerability Score                                                                    |
-|   11   |    Susceptibility Category   |  Susceptibility Category for the given Susceptibility Score                                                                   |
+The dataset includes 11 years data of multiple countries with the following attributes:
+1. Region: Name of the region 
+2. WRI: World Risk Score measures a country's risk of disaster from extreme weather events. It combines indicators of exposure to extreme weather events (earthquakes, storms, floods, droughts...)    
+3. Exposure: refers to the extent to which a country or region is physically exposed to extreme weather events (earthquakes, storms, floods, droughts...)
+4. Vulnerability: refers to the susceptibility of a country to adverse impacts from extreme weather events, depending on infrastructure, nutrition, housing situation, economic, and the ability to recover from disasters
+5. Susceptibility: refers to the likelihood of harm a country faces from extreme weather events, depending on infrastructure, nutrition, housing situation, economic, and the ability to recover from disasters
+6. Lack of Coping Capabilities: refers to the immediate ability of a country to manage and respond to extreme weather events
+7. Lack of Adaptive Capabilities: refers to the long-term ability of a country to adjust to and recover from extreme weather events
+8. Year (2011-2021): Year data is being recorded
+9. Exposure Category: Ordinal Measurement - Very High, High, Medium, Low, Very Low
+10. Vulnerability Categoy: Ordinal Measurement - Very High, High, Medium, Low, Very Low
+11. Susceptibility Category: Ordinal Measurement - Very High, High, Medium, Low, Very Low
+
 
 ### ETL Pipeline:
 ``` mermaid
 flowchart TB
   
   A[Dataset 1:
-    SEA_extreme_weather_events.csv] --data.opendevelopmentmekong.net--> SUB0 --> db1[("Storage: weather_events.sqlite")] --> G[Reporting & Analytics] 
+    SEA_extreme_weather_events] --data.opendevelopmentmekong.net--> SUB0 --> db1[("Storage: extreme_weather_events.sqlite")] --> G[Reporting & Analytics] 
   B[Dataset 2:
-    SEA_socioeconomics.csv] --kaggle.com --> SUB1 
+    SEA_socioeconomics] --kaggle.com --> SUB1 
   C[Dataset 3:
-    SEA_disaster_risk.csv] --kaggle.com --> SUB1
+    SEA_disaster_risk] --kaggle.com --> SUB1
   SUB1 --> db2[("Storage: socialeconomic_risk.sqlite")] --> G[Reporting & Analytics]
 
 subgraph SUB1[ETL Pipeline: pipeline.py]
@@ -115,7 +145,9 @@ end
 ```
 ## Limitation on the datasets:
 * Although Vietnam is a very fast developing country, its information was somehow missing in the economy dataset. Thus readers have no insight to this country. 
-
+The dataset is noisy.
+Many of the features have missing/incomplete data, with seven columns in particular having > 90% of the features missing.
+The data can also be inconsistent and non-standardized, particularly when it comes of the location of where a natural disaster occurred.
 ## Conclusion
 
 The findings reveals that Southeast Asian countries are vulnerable to climate-related disasters.
