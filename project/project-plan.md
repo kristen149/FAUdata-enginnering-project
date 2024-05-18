@@ -1,12 +1,12 @@
 # Project Plan
 
 <!-- Give your project a short title. -->
-### Assessing the impacts of extreme weather events on the Socio-economics - A case study in Southeast Asia region
+### Assessing the impacts of extreme weather events on the Socioeconomics - A case study in Southeast Asia region
 The objective of this data science project is analyzing the impact of extreme weather events on the economic trends of Southeast Asia from 1970 to 2021.
 
 One of the most visible consequences of climate change is the increase in frequency and intensity of extreme weather events, typically typhoons, earthquake, droughts, and floods. By examining historical data, the project aims to uncover patterns and correlations between extreme weather events and economic indicators like GDP growth, agricultural output, and infrastructure damage. 
 
-## Description: Reason for choosing Southeast Asia
+## Description: Reason for targeting on Southeast Asia
 
 Southeast Asia is nowadays a development and economic success story.
 
@@ -36,13 +36,11 @@ Some key questions will be answered by this project:
 
 * License: [CC BY-SA 3.0 DEED License](https://creativecommons.org/licenses/by-sa/3.0/)
 
-Overview:
+#### Data overview:
 From 1909 to 2021, 2737 extreme weather events have been recorded. 
-
 The dataset consists of 53 regular attributes to these events, as sequence number, disaster coding code, year, disaster group, disaster type group, disaster type, event name, water, country, location, longitude, latitude, local time, start date, end date, total number of deaths, total losses...
 
-#### Data overview:
-Among the 53 regular attributes in the dataset, the most important ones were chosen as follows:
+Among the 53 regular attributes in the dataset, the most important ones were chosen for this data science project as follows:
 1. Year: The year the disaster occurred
 2. Disaster Group: Category of the disaster (ex. natural or technological)
 3. Disaster Subgroup: More specific category within the main disaster group (ex. geophysical, biological, meteoroligical...)
@@ -99,10 +97,10 @@ The dataset includes 19 years data of multiple countries with the following attr
 
 
 ### Datasource3: Southeast Asian Disaster Risk
-* Metadata URL: https://www.kaggle.com/datasets/tr1gg3rtrash/global-disaster-risk-index-time-series-dataset
-* Data URL: https://www.kaggle.com/datasets/tr1gg3rtrash/global-disaster-risk-index-time-series-dataset
+* Metadata URL: https://data.humdata.org/dataset/worldriskindex?
+* Data URL: https://data.humdata.org/dataset/1efb6ee7-051a-440f-a2cf-e652fecccf73/resource/3a2320fa-41b4-4dda-a847-3f397d865378/download/worldriskindex-trend.csv
 * Data Type: CSV
-* License: [CC0: Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+* License: [Creative Commons Attribution International](https://data.humdata.org/faqs/licenses)
 
 #### Data overview:
  The dataset conceptually combines the exposure to extreme natural hazards with the societal vulnerability of individual countries. The exposure analysis takes into account earthquakes, cyclones, floods, droughts, and climate-induced sea-level rise. Societal vulnerability is divided into susceptibility to extreme natural events, lack of coping capacities, and lack of adaptive capacities. All components of the index are scaled from 0 to 100. A higher score on the WorldRiskIndex signifies a greater national disaster risk.
@@ -110,7 +108,7 @@ The dataset includes 19 years data of multiple countries with the following attr
 
 The dataset includes 11 years data of multiple countries with the following attributes:
 1. Region: Name of the region 
-2. WRI: World Risk Score measures a country's risk of disaster from extreme weather events. It combines indicators of exposure to extreme weather events (earthquakes, storms, floods, droughts...)    
+2. WRI: World Risk Index measures a country's risk of disaster from extreme weather events. It combines indicators of exposure to extreme weather events (earthquakes, storms, floods, droughts...)    
 3. Exposure: refers to the extent to which a country or region is physically exposed to extreme weather events (earthquakes, storms, floods, droughts...)
 4. Vulnerability: refers to the susceptibility of a country to adverse impacts from extreme weather events, depending on infrastructure, nutrition, housing situation, economic, and the ability to recover from disasters
 5. Susceptibility: refers to the likelihood of harm a country faces from extreme weather events, depending on infrastructure, nutrition, housing situation, economic, and the ability to recover from disasters
