@@ -28,7 +28,7 @@ Some key questions will be answered by this project:
 
 <!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
 
-### Datasource1: Southeast Asian Extreme Weather Events
+### Datasource 1: Southeast Asian Extreme Weather Events
 * Metadata URL: https://data.opendevelopmentmekong.net/dataset/disaster-in-southeast-asia-from-1900-to-2021
 * Data URL: https://data.vietnam.opendevelopmentmekong.net/dataset/a6232bd8-c77e-40f7-ab1b-5fe824de52ce/resource/d1b3b83a-4312-44e7-806d-8f16bf83ed3a/download/disaster_south_eastern_asia_en.csv
 
@@ -70,7 +70,7 @@ Among the 53 regular attributes in the dataset, the most important ones were cho
 
 
 
-### Datasource2: Southeast Asian Socioeconomics
+### Datasource 2: Southeast Asian Socioeconomics
 * Metadata URL: https://www.kaggle.com/datasets/mjshri23/life-expectancy-and-socio-economic-world-bank
 * Data URL: https://www.kaggle.com/datasets/mjshri23/life-expectancy-and-socio-economic-world-bank
 * Data Type: CSV
@@ -96,14 +96,14 @@ The dataset includes 19 years data of multiple countries with the following attr
 16. Disability-Adjusted Life Years (DALYs) due to Non-Communicable diseases
 
 
-### Datasource3: Southeast Asian Disaster Risk
+### Datasource 3: Southeast Asian Disaster Risk
 * Metadata URL: https://data.humdata.org/dataset/worldriskindex?
 * Data URL: https://data.humdata.org/dataset/1efb6ee7-051a-440f-a2cf-e652fecccf73/resource/3a2320fa-41b4-4dda-a847-3f397d865378/download/worldriskindex-trend.csv
 * Data Type: CSV
 * License: [Creative Commons Attribution International](https://data.humdata.org/faqs/licenses)
 
 #### Data overview:
- The dataset conceptually combines the exposure to extreme natural hazards with the societal vulnerability of individual countries. The exposure analysis takes into account earthquakes, cyclones, floods, droughts, and climate-induced sea-level rise. Societal vulnerability is divided into susceptibility to extreme natural events, lack of coping capacities, and lack of adaptive capacities. All components of the index are scaled from 0 to 100. A higher score on the WorldRiskIndex signifies a greater national disaster risk.
+ The dataset conceptually combines the exposure to extreme weather events with the societal vulnerability of individual countries. The exposure analysis takes into account earthquakes, cyclones, floods, droughts, and climate-induced sea-level rise. Societal vulnerability is divided into susceptibility to extreme natural events, lack of coping capacities, and lack of adaptive capacities. All components of the index are scaled from 0 to 100. A higher score on the WorldRiskIndex signifies a greater national disaster risk.
 
 
 The dataset includes 11 years data of multiple countries with the following attributes:
@@ -125,17 +125,16 @@ The dataset includes 11 years data of multiple countries with the following attr
 flowchart TB
   
   A[Dataset 1:
-    SEA_extreme_weather_events] --data.opendevelopmentmekong.net--> SUB0 --> db1[("Storage: extreme_weather_events.sqlite")] --> G[Reporting & Analytics] 
+    SEA_extreme_weather_events] --data.opendevelopmentmekong.net--> SUB0 --Sqlite database with 3 tables--> db1[("database.sqlite
+     1. extreme_weather_events
+     2. socioeconomics
+     3. disaster_risk")] --> G[Analytics and Reporting] 
   B[Dataset 2:
-    SEA_socioeconomics] --kaggle.com --> SUB1 
+    SEA_socioeconomics] --kaggle.com --> SUB0 
   C[Dataset 3:
-    SEA_disaster_risk] --kaggle.com --> SUB1
-  SUB1 --> db2[("Storage: socialeconomic_risk.sqlite")] --> G[Reporting & Analytics]
+    SEA_disaster_risk] --data.humdata.org --> SUB0
 
-subgraph SUB1[ETL Pipeline: pipeline.py]
- direction LR
-    I(Extract)----> K(Transform)---->L(Load)
-end
+
 subgraph SUB0[ETL Pipeline: pipeline.py]
     direction LR
     D(Extract)----> E(Transform)----> F(Load)
