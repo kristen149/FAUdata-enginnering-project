@@ -118,7 +118,7 @@ The dataset includes 11 years data of multiple countries with the following attr
 7. Lack of Adaptive Capabilities: refers to the long-term ability of a country to adjust to and recover from extreme weather events
 8. Year (2011-2021): Year data is being recorded
 9. Exposure Category: Ordinal Measurement - Very High, High, Medium, Low, Very Low
-10. Vulnerability Categoy: Ordinal Measurement - Very High, High, Medium, Low, Very Low
+10. Vulnerability Category: Ordinal Measurement - Very High, High, Medium, Low, Very Low
 11. Susceptibility Category: Ordinal Measurement - Very High, High, Medium, Low, Very Low
 
 
