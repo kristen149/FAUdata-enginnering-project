@@ -90,6 +90,7 @@ def main():
                                 'End Year',
                                 'End Month',
                                 'End Day',
+                                "Insured Damages ('000 US$)", # too many missing values
                                 "Insured Damages, Adjusted ('000 US$)",
                                 "Total Damages, Adjusted ('000 US$)",
                                 'Adm Level', 
@@ -102,14 +103,26 @@ def main():
     if 'ISO' in df_events.columns:
         df_events.rename(columns={'ISO': 'Country Code'}, inplace= True)
     ## print(df_events.columns)
+    
+    ## DATA IMPUTATION
+    df_events['No Injured'].interpolate(method='linear', inplace = True)
+    df_events['No Injured'].fillna(method='bfill', inplace=True)
+    df_events['No Affected'].interpolate(method='linear', inplace = True)
+    df_events['No Affected'].fillna(method='bfill', inplace=True)
+    df_events['No Homeless'].interpolate(method='linear', inplace = True)
+    df_events['No Homeless'].fillna(method='bfill', inplace=True)
+    df_events['Total Affected'].interpolate(method='linear', inplace = True)
+    df_events['Total Affected'].fillna(method='bfill', inplace=True)
+    df_events['CPI'].interpolate(method='linear', inplace = True)
+    df_events["Total Damages ('000 US$)"].interpolate(method='linear', inplace = True)
+    df_events["Total Damages ('000 US$)"].fillna(method='bfill', inplace=True)
+
 
     ## DATA LOADING:
     engine = create_sqlite_database(sqlite_db_path)
     df_events.to_sql('extreme_weather_events', con=engine, index=False)
     
     print('Data has been successfully written')
-    # Read data from Sqlite to dataframe
-    df_events_sqlite = pd.read_sql_table('extreme_weather_events', con=engine)
     
     # Data source 2: SEA_socioeconomics
     ## DATA EXTRACTION:
@@ -130,10 +143,24 @@ def main():
     
     ### 2. Limit the dataset to only Southeast Asian countries
     df_SEA_socioeconomics =  df_socioeconomics[df_socioeconomics['Country Code'].isin(SEA_country_code)]
-    print(df_SEA_socioeconomics)
+    ### 3. Drop Corruption column (because too many missing values)
+    df_SEA_socioeconomics = df_SEA_socioeconomics.drop(["Corruption", 
+                                                        "Region" # not so meaningful with one value
+                                                        ], axis=1 )
     
+    ## DATA IMPUTATION:
+    df_SEA_socioeconomics['Prevelance of Undernourishment'].interpolate(method = 'linear', inplace = True)
+    
+    df_SEA_socioeconomics['Education Expenditure %'].interpolate(method='linear', inplace = True)
+    df_SEA_socioeconomics['Education Expenditure %'].fillna(method='bfill', inplace=True)
+    
+    df_SEA_socioeconomics['Sanitation'].interpolate(method='linear', inplace = True)
+    df_SEA_socioeconomics['Sanitation'].fillna(method='bfill', inplace=True)
+
+
     ## DATA LOADING:
     df_SEA_socioeconomics.to_sql('socioeconomics', con=engine, index=False)
+    
     
     # Data source 3: SEA_disaster_risk
     ## DATA EXTRACTION:
@@ -166,7 +193,7 @@ def main():
 
     ### 3. Limit the dataset to only Southeast Asian countries
     df_disasater_risk =  df_disasater_risk[df_disasater_risk['Country Code'].isin(SEA_country_code)]
-
+    
     ## DATA LOADING 
     df_disasater_risk.to_sql('disaster_risk', con=engine, index=False)
     
