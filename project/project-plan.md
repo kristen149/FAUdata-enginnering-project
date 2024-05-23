@@ -8,7 +8,7 @@ One of the most visible consequences of climate change is the increase in freque
 
 ## Description: Reason for targeting on Southeast Asia
 
-Southeast Asia is nowadays a development and economic success story. However, Southeast Asia is one of the world’s regions most vulnerable to climate change impacts with low-lying land, more severe floods and droughts, larger populations, higher dependency on agriculture for the economic sector, and low resilience of communities. [#ri][1] Countries as the Philippines, Vietnam, Indonesia, and Thailand have experienced some of the most extreme weather events globally. Therefore, a study on how future climate change will affect the economy in this region has been conducted. The results are provided in this data science project.
+Southeast Asia is nowadays a development and economic success story. However, Southeast Asia is one of the world’s regions most vulnerable to climate change impacts with low-lying land, more severe floods and droughts, larger populations, higher dependency on agriculture for the economic sector, and low resilience of communities. [#reference][1] Countries as the Philippines, Vietnam, Indonesia, and Thailand have experienced some of the most extreme weather events globally. Therefore, a study on how future climate change will affect the economy in this region has been conducted. The results are provided in this data science project.
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
 
