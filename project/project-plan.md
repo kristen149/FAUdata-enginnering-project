@@ -8,7 +8,7 @@ One of the most visible consequences of climate change is the increase in freque
 
 ## Description: Reason for targeting on Southeast Asia
 
-Southeast Asia is nowadays a development and economic success story. However, Southeast Asia is one of the world’s regions most vulnerable to climate change impacts with low-lying land, more severe floods and droughts, larger populations, higher dependency on agriculture for the economic sector, and low resilience of communities. [#6] Countries as the Philippines, Vietnam, Indonesia, and Thailand experiences some of the most extreme weather events globally.Therefore, a study on how future climate change will affect the economy in this region has been conducted. The results are provided in this data science project.
+Southeast Asia is nowadays a development and economic success story. However, Southeast Asia is one of the world’s regions most vulnerable to climate change impacts with low-lying land, more severe floods and droughts, larger populations, higher dependency on agriculture for the economic sector, and low resilience of communities. [#7][1] Countries as the Philippines, Vietnam, Indonesia, and Thailand have experienced some of the most extreme weather events globally. Therefore, a study on how future climate change will affect the economy in this region has been conducted. The results are provided in this data science project.
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
 
@@ -18,7 +18,6 @@ Southeast Asia is nowadays a development and economic success story. However, So
 Some key questions will be answered by this project:
 1. What are the patterns in the occurrence of extreme weather events and the socioeconomic status of Southeast Asian countries?
 2. How do extreme weather events impact the socioeconomic status of Southeast Asian countries?
-3. How can predictive analysis be employed to forecast the economic consequences of forthcoming extreme weather occurrences on Southeast Asian countries?
 
 ## Datasources
 
@@ -137,10 +136,9 @@ subgraph SUB0[ETL Pipeline: pipeline.py]
 end
 ```
 ## Limitation on the datasets:
-* Although Vietnam is a very fast developing country, its information was somehow missing in the economy dataset. Thus readers have no insight to this country. 
-The dataset is noisy.
-Many of the features have missing/incomplete data, with seven columns in particular having > 90% of the features missing.
-The data can also be inconsistent and non-standardized, particularly when it comes of the location of where a natural disaster occurred.
+* 
+Many of the features have many missing/incomplete data, with seven columns in particular having > 90% of the features missing.
+The timeline in datasets can also be inconsistent and non-standardized, particularly when it comes of the location of where a natural disaster occurred.
 ## Conclusion
 
 The findings reveals that Southeast Asian countries are vulnerable to climate-related disasters.
@@ -153,10 +151,11 @@ The findings reveals that Southeast Asian countries are vulnerable to climate-re
 2. Writing project plan and overview [#2]
 3. Building ETL Pipeline for the datasets [#3]
 4. Analyzing patterns and training predictive models [#4]
-5. Drawing conclusion, suggesting for further research [#5]
+5. Building CI pipeline [#4]
+6. Drawing conclusion, suggesting for further research [#6]
 
 [i1]: https://github.com/jvalue/made-template/issues/1
 
 ## References
 
-[i6] https://www.usaid.gov/asia-regional/fact-sheets/confronting-climate-crisis-southeast-asia-regional-approach
+[1]: https://www.usaid.gov/asia-regional/fact-sheets/confronting-climate-crisis-southeast-asia-regional-approach
