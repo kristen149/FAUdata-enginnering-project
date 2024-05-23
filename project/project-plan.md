@@ -136,7 +136,6 @@ subgraph SUB0[ETL Pipeline: pipeline.py]
 end
 ```
 ## Limitation on the datasets:
-* 
 Many of the features have many missing/incomplete data, with seven columns in particular having > 90% of the features missing.
 The timeline in datasets can also be inconsistent and non-standardized, particularly when it comes of the location of where a natural disaster occurred.
 ## Conclusion
