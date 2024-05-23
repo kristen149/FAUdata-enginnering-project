@@ -2,17 +2,13 @@
 
 <!-- Give your project a short title. -->
 ### Assessing the impacts of extreme weather events on the Socioeconomics - A case study in Southeast Asia region
-The objective of this data science project is analyzing the impact of extreme weather events on the economic trends of Southeast Asia from 1970 to 2021.
+The objective of this data science project is analyzing the impact of extreme weather events on the socioeconomic trends of Southeast Asia.
 
-One of the most visible consequences of climate change is the increase in frequency and intensity of extreme weather events, typically typhoons, earthquake, droughts, and floods. By examining historical data, the project aims to uncover patterns and correlations between extreme weather events and economic indicators like GDP growth, agricultural output, and infrastructure damage. 
+One of the most visible consequences of climate change is the increase in frequency and intensity of extreme weather events, typically typhoons, earthquake, droughts, and floods. By examining historical data, the project aims to uncover patterns and correlations between extreme weather events and socioeconomic indicators as life expectancy, unemployment, corruption, sanitation, health expenditure, infrastructure damage etc. 
 
 ## Description: Reason for targeting on Southeast Asia
 
-Southeast Asia is nowadays a development and economic success story.
-
-"Southeast Asia is one of the world’s regions most vulnerable to climate change impacts with low-lying land, more severe floods and droughts, larger populations, higher dependency on agriculture for the economic sector, and low resilience of communities."  https://www.usaid.gov/asia-regional/fact-sheets/confronting-climate-crisis-southeast-asia-regional-approach
-
- Therefore, a study on how future climate change will affect the economy in this region has been conducted. The results are provided in this data science project.
+Southeast Asia is nowadays a development and economic success story. However, Southeast Asia is one of the world’s regions most vulnerable to climate change impacts with low-lying land, more severe floods and droughts, larger populations, higher dependency on agriculture for the economic sector, and low resilience of communities. [#6] Countries as the Philippines, Vietnam, Indonesia, and Thailand experiences some of the most extreme weather events globally.Therefore, a study on how future climate change will affect the economy in this region has been conducted. The results are provided in this data science project.
 
 <!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
 
@@ -160,3 +156,7 @@ The findings reveals that Southeast Asian countries are vulnerable to climate-re
 5. Drawing conclusion, suggesting for further research [#5]
 
 [i1]: https://github.com/jvalue/made-template/issues/1
+
+## References
+
+[i6] https://www.usaid.gov/asia-regional/fact-sheets/confronting-climate-crisis-southeast-asia-regional-approach
