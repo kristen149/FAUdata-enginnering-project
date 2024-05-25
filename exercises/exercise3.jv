@@ -1,6 +1,18 @@
 pipeline GoodsPipeline
 {
 
+    GoodsExtractor
+        -> GoodsTextFileInterpreter
+        -> GoodsCSVInterpreter 
+        -> GoodsRowDeleter
+        -> GoodsSelector
+        -> TransportedGoodsHeaderWriter
+        -> QuantityNameHeaderWriter
+        -> GoodsTableInterpreter
+        -> ConvertUppercaseMonth
+        -> ConvertUppercaseFebruar
+        -> GoodsLoader;
+
     block GoodsExtractor oftype HttpExtractor    
     {
 
@@ -110,17 +122,6 @@ pipeline GoodsPipeline
         file: "./goodsTransportedByTrain.sqlite";
     }
 
-    GoodsExtractor
-        -> GoodsTextFileInterpreter
-        -> GoodsCSVInterpreter 
-        -> GoodsRowDeleter
-        -> GoodsSelector
-        -> TransportedGoodsHeaderWriter
-        -> QuantityNameHeaderWriter
-        -> GoodsTableInterpreter
-        -> ConvertUppercaseMonth
-        -> ConvertUppercaseFebruar
-        -> GoodsLoader;
-
+    
 
 }
