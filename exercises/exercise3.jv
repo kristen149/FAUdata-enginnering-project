@@ -43,17 +43,23 @@ pipeline GoodsPipeline
         header: true;
         columns: [
             "year" oftype text,
-            "month" oftype text,
+            "month" oftype GermanMonth,
             "goods_id" oftype nst7,
             "goods_name" oftype text,
             "goods_source" oftype text, 
-            "abroad" oftype integer,
-            "total" oftype integer,  
+            "abroad" oftype positiveInteger,
+            "total" oftype positiveInteger,  
         ];
     }
     
     // Numeric values must be positive integers
-  
+    valuetype positiveInteger oftype integer
+    {
+        constraints: [setPositiveInteger];
+    }
+    constraint setPositiveInteger on decimal:
+        value >= 0;
+
     // Starts with NST7-
     valuetype nst7 oftype text
     {
@@ -63,14 +69,46 @@ pipeline GoodsPipeline
     {
         regex: /^NST7-[A-Z0-9]{3}$/;
     }
-    // CAPITALIZED MONTH
-    
+    // Uppercase MONTH
+    valuetype GermanMonth oftype text
+    {
+        constraints: [setGermanMonth];
+    }
+    constraint setGermanMonth oftype AllowlistConstraint {
+        allowlist:['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+    }
+
+    transform ConvertUppercase 
+    {
+        from inputName oftype text;
+        to outputName oftype text;
+
+        outputName: inputName replace /Januar/ with 'JANUAR' ;
+    }
+    block ConvertUppercaseMonth oftype TableTransformer
+    {
+        inputColumns: ['month'];
+        outputColumn: 'month';
+        use: ConvertUppercase;
+    }
+    transform ConvertUppercaseFebruar
+    {
+        from inputName oftype text;
+        to outputName oftype text;
+        outputName: inputName replace /Februar/ with 'FEBRUAR';
+    }
+    block ConvertUppercaseFebruar oftype TableTransformer
+    {
+        inputColumns: ['month'];
+        outputColumn: 'month';
+        use: ConvertUppercaseFebruar;
+    }
+
+    // ============================================================================
     block GoodsLoader oftype SQLiteLoader {
         table: "goods";
         file: "./goodsTransportedByTrain.sqlite";
     }
-
-
 
     GoodsExtractor
         -> GoodsTextFileInterpreter
@@ -80,6 +118,8 @@ pipeline GoodsPipeline
         -> TransportedGoodsHeaderWriter
         -> QuantityNameHeaderWriter
         -> GoodsTableInterpreter
+        -> ConvertUppercaseMonth
+        -> ConvertUppercaseFebruar
         -> GoodsLoader;
 
 
