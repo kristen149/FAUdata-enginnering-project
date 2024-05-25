@@ -53,15 +53,7 @@ pipeline GoodsPipeline
     }
     
     // Numeric values must be positive integers
-    valuetype positiveInteger oftype integer
-    {
-        constraints: [positiveInt];
-    }
-    constraint positiveInt oftype RegexConstraint
-    {
-        regex: /^ *-?[1-9]\d* -*$/;
-    }
-
+  
     // Starts with NST7-
     valuetype nst7 oftype text
     {
