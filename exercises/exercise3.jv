@@ -20,7 +20,7 @@ pipeline GoodsPipeline
         url: "https://www-genesis.destatis.de/genesis/downloads/00/tables/46131-0014_00.csv";
     }
 
-    block GoodsTextFileInterpreter oftype TextFileInterpreter { encoding: "latin2";}
+    block GoodsTextFileInterpreter oftype TextFileInterpreter { encoding: "latin3";}
     block GoodsCSVInterpreter oftype CSVInterpreter 
     {
         delimiter: ";";
@@ -54,7 +54,7 @@ pipeline GoodsPipeline
     {
         header: true;
         columns: [
-            "year" oftype text,
+            "year" oftype positiveInteger,
             "month" oftype GermanMonth,
             "goods_id" oftype nst7,
             "goods_name" oftype text,
@@ -119,7 +119,7 @@ pipeline GoodsPipeline
     // ============================================================================
     block GoodsLoader oftype SQLiteLoader {
         table: "goods";
-        file: "./goodsTransportedByTrain.sqlite";
+        file: "goodsTransportedByTrain.sqlite";
     }
 
     
