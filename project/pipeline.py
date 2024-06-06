@@ -10,6 +10,7 @@ import sqlalchemy as sql
 from io import StringIO
 # Python get kaggle data
 from kaggle.api.kaggle_api_extended import KaggleApi
+from sklearn.impute import KNNImputer
 
 # ===================USEFUL FUNCTION =====================
 def extract_data_from_kaggle (url, destination_path = ''):
@@ -116,6 +117,26 @@ def main():
     df_events['CPI'].interpolate(method='linear', inplace = True)
     df_events["Total Damages ('000 US$)"].interpolate(method='linear', inplace = True)
     df_events["Total Damages ('000 US$)"].fillna(method='bfill', inplace=True)
+    
+    ### Local Time (do not apply due to numerous similar time)
+    """ Convert 'Local Time' to minutes past midnight
+    def time_to_minutes(time_str):
+        if pd.isna(time_str):
+            return np.nan
+        hours, minutes = map(int, time_str.split(':'))
+        return hours * 60 + minutes
+
+    df_events["Local Time Minutes"] = df_events['Local Time'].apply(time_to_minutes)
+    imputer = KNNImputer(n_neighbors=5)
+    df_events["Local Time Minutes"] = imputer.fit_transform(df_events[['Local Time Minutes']]) 
+
+    # Convert minutes back to time format
+    def minutes_to_time(minutes):
+        hours = int(minutes // 60)
+        mins = int(minutes % 60)
+        return f'{hours:02}:{mins:02}'
+    df_events['Local Time'] = df_events['Local Time Minutes'].apply(minutes_to_time)
+    df_events.drop(columns='Local Time Minutes', inplace=True)"""
 
 
     ## DATA LOADING:
