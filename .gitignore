@@ -2,7 +2,6 @@
 *GER_shape*
 !/data/.gitkeep
 .idea*
-*.sqlite
 *.ttl*
 *.pkl
 *.csv
