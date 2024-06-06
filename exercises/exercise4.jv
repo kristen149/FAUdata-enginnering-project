@@ -46,7 +46,7 @@ pipeline WeatherPipeline
     // ============================================================================
     block WeatherLoader oftype SQLiteLoader {
         table: "temperatures";
-        file: "temperatures.sqlite";
+        file: "exercises/temperatures.sqlite";
     }
 
     
