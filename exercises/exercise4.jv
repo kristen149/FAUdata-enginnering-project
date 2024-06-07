@@ -15,7 +15,7 @@ pipeline WeatherPipeline
     {
 
         // Here, we specify the path where the file shall be downloaded from.
-        filePath: "data.csv";
+        filePath: "exercises/data.csv";
     }
 
     block WeatherTextFileInterpreter oftype TextFileInterpreter { encoding: "utf8";}
@@ -47,6 +47,11 @@ pipeline WeatherPipeline
             "battery_temperature" oftype decimal,
         ];
     }
+    // ============================================================================
+    block WeatherLoader oftype SQLiteLoader {
+        table: "temperatures";
+        file: "./temperatures.sqlite";
+    }
   
        block TempTransformer oftype TableTransformer {
         inputColumns: ['temperature'];
@@ -66,11 +71,7 @@ pipeline WeatherPipeline
         tempFahrenheit: round((tempCelsius * 9/5) + 32);
 }
 
-    // ============================================================================
-    block WeatherLoader oftype SQLiteLoader {
-        table: "temperatures";
-        file: "./temperatures.sqlite";
-    }
+    
 
     
 
