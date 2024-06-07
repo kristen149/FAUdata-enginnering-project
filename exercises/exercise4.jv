@@ -51,7 +51,7 @@ pipeline WeatherPipeline
     block WeatherTableInterpreter oftype TableInterpreter {
         header : false;
         columns : [
-            "id" oftype integer,
+            "id" oftype positiveInteger,
             "producer" oftype text,
             "model" oftype text,
             "month" oftype integer,
@@ -83,7 +83,14 @@ pipeline WeatherPipeline
         tempFahrenheit: round((tempCelsius * 9/5) + 32);
 }
 
-    
+    // id over 0
+    valuetype positiveInteger oftype integer
+    {
+        constraints: [setPositiveInteger];
+    }
+    constraint setPositiveInteger on decimal:
+        value > 0;
+
 
     
 
