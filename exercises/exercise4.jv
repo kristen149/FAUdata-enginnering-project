@@ -60,7 +60,7 @@ pipeline WeatherPipeline
             "id" oftype positiveInteger,
             "producer" oftype text,
             "model" oftype text,
-            "month" oftype month,
+            "month" oftype integer,
             "temperature" oftype decimal,
             "battery_temperature" oftype decimal,
         ];
@@ -101,17 +101,5 @@ pipeline WeatherPipeline
     constraint setPositiveInteger on decimal:
         value > 0;
 
-    valuetype month oftype integer  
-    {
-        constraints: [MonthRange];
-    }
-    constraint MonthRange oftype RangeConstraint 
-    {
-        lowerBound: 1;
-        lowerBoundInclusive: true;
-        upperBound: 12;
-        upperBoundInclusive: true;
-    }
-    
 
 }
