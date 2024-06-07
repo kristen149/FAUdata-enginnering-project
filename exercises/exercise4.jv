@@ -1,17 +1,53 @@
-pipeline WeatherPipeline {
-    block DataExtractor oftype LocalFileExtractor {
-        filePath: "data.csv";
-    }
-    block WeatherTextFileInterpreter oftype TextFileInterpreter {}
-    block WeatherCSVInterpreter oftype CSVInterpreter {
-        delimiter : ';';
+pipeline WeatherPipeline
+{
+
+    WeatherExtractor
+        -> WeatherArchiveInterpreter
+        -> WeatherFilePicker
+        -> WeatherTextFileInterpreter
+        -> WeatherCSVInterpreter 
+        -> WeatherColumnDeleter
+        -> WeatherRowDeleter
+        -> WeatherTableInterpreter
+        -> TempTransformer
+        -> BatteryTempTransformer
+        -> WeatherLoader;
+
+    block WeatherExtractor oftype HttpExtractor 
+    {
+        url: "https://www.mowesta.com/data/measure/mowesta-dataset-20221107.zip";
     } 
-    block WeatherColumnDeleter oftype ColumnDeleter {
+
+    block WeatherArchiveInterpreter oftype ArchiveInterpreter 
+    {
+        archiveType: "zip";
+
+    }
+    block WeatherFilePicker oftype FilePicker      
+    {
+
+        // Here, we specify the path where the file shall be downloaded from.
+        path: "/data.csv";
+    }
+
+    block WeatherTextFileInterpreter oftype TextFileInterpreter { encoding: "utf8";}
+    block WeatherCSVInterpreter oftype CSVInterpreter 
+    {
+        delimiter: ";";
+    }
+    
+
+    block WeatherColumnDeleter oftype ColumnDeleter
+    {
         delete: [column F,column G,column H,column I];
     }
+
     block WeatherRowDeleter oftype RowDeleter {
         delete: [row 1];
     }
+    // SELECT ONLY A SUBSET OF COLUMNS
+
+
     block WeatherTableInterpreter oftype TableInterpreter {
         header : false;
         columns : [
@@ -23,12 +59,13 @@ pipeline WeatherPipeline {
             "battery_temperature" oftype decimal,
         ];
     }
-    block Databaseloader oftype SQLiteLoader {
-        table : "temperatures";
-        file : "./temperatures.sqlite";
+    // ============================================================================
+    block WeatherLoader oftype SQLiteLoader {
+        table: "temperatures";
+        file: "./temperatures.sqlite";
     }
-
-    block TempTransformer oftype TableTransformer {
+  
+       block TempTransformer oftype TableTransformer {
         inputColumns: ['temperature'];
         outputColumn: 'temperature';
         use: CelsiusToFahrenheit;
@@ -46,14 +83,8 @@ pipeline WeatherPipeline {
         tempFahrenheit: round((tempCelsius * 9/5) + 32);
 }
 
+    
 
-    DataExtractor
-        ->WeatherTextFileInterpreter
-        ->WeatherCSVInterpreter
-        ->WeatherColumnDeleter
-        ->WeatherRowDeleter
-        ->WeatherTableInterpreter
-        ->TempTransformer
-        ->BatteryTempTransformer
-        ->Databaseloader;   
+    
+
 }
