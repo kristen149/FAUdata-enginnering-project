@@ -5,7 +5,10 @@ pipeline WeatherPipeline
         -> WeatherTextFileInterpreter
         -> WeatherCSVInterpreter 
         -> WeatherColumnDeleter
+        -> WeatherRowDeleter
         -> WeatherTableInterpreter
+        -> TempTransformer
+        -> BatteryTempTransformer
         -> WeatherLoader;
 
     block WeatherExtractor oftype LocalFileExtractor     
@@ -26,6 +29,10 @@ pipeline WeatherPipeline
     {
         delete: [column F,column G,column H,column I];
     }
+
+    block WeatherRowDeleter oftype RowDeleter {
+        delete: [row 1];
+    }
     // SELECT ONLY A SUBSET OF COLUMNS
 
 
@@ -41,7 +48,23 @@ pipeline WeatherPipeline
         ];
     }
   
-   
+       block TempTransformer oftype TableTransformer {
+        inputColumns: ['temperature'];
+        outputColumn: 'temperature';
+        use: CelsiusToFahrenheit;
+    }
+
+    block BatteryTempTransformer oftype TableTransformer {
+        inputColumns: ['battery_temperature'];
+        outputColumn: 'battery_temperature';
+        use: CelsiusToFahrenheit;
+    }
+
+    transform CelsiusToFahrenheit {
+        from tempCelsius oftype decimal;
+        to tempFahrenheit oftype decimal;
+        tempFahrenheit: round((tempCelsius * 9/5) + 32);
+}
 
     // ============================================================================
     block WeatherLoader oftype SQLiteLoader {
