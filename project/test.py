@@ -1,6 +1,5 @@
 import os
 import pandas as pd
-import sqlalchemy as sql
 import sqlite3
 
 def test_pipeline(database_path):
@@ -23,35 +22,59 @@ def test_pipeline(database_path):
         
         # Check column names for extreme_weather_events
         df = pd.read_sql_query("PRAGMA table_info(extreme_weather_events)", conn)
-        columns = df['name'].tolist()
-        expected_columns = ['Year', 'Seq', 'Disaster Group', 'Disaster Subgroup', 'Disaster Type', 'Disaster Subtype', 'Event Name', 'Country', 'Country Code', 'Location', 'Origin', 'Associated Dis', 'Appeal', 'Declaration', 'Aid Contribution', 'Dis Mag Value', 'Dis Mag Scale', 'Local Time', 'Total Deaths', 'No Injured', 'No Affected', 'No Homeless', 'Total Affected', "Total Damages ('000 US$)", 'CPI', 'Geo Locations']
-        assert set(columns) == set(expected_columns), f"Columns in extreme_weather_events do not match: {columns}"
+        columns = df[['name', 'type']].values.tolist()
+        expected_columns = [
+            ['Year', 'BIGINT'], ['Seq', 'BIGINT'], ['Disaster Group', 'TEXT'], 
+            ['Disaster Subgroup', 'TEXT'], ['Disaster Type', 'TEXT'], ['Disaster Subtype', 'TEXT'], 
+            ['Event Name', 'TEXT'], ['Country', 'TEXT'], ['Country Code', 'TEXT'], 
+            ['Location', 'TEXT'], ['Origin', 'TEXT'], ['Associated Dis', 'TEXT'], 
+            ['Appeal', 'TEXT'], ['Declaration', 'TEXT'], ['Aid Contribution', 'FLOAT'], 
+            ['Dis Mag Value', 'FLOAT'], ['Dis Mag Scale', 'TEXT'], ['Local Time', 'TEXT'], 
+            ['Total Deaths', 'FLOAT'], ['No Injured', 'FLOAT'], ['No Affected', 'FLOAT'], 
+            ['No Homeless', 'FLOAT'], ['Total Affected', 'FLOAT'], 
+            ["Total Damages ('000 US$)", 'FLOAT'], ['CPI', 'FLOAT'], ['Geo Locations', 'TEXT']
+        ]
+        assert columns == expected_columns, f"Columns and types in extreme_weather_events do not match: {columns}"
+
 
         # Check data integrity for extreme_weather_events
         result = conn.execute("SELECT COUNT(*) FROM extreme_weather_events WHERE 'No Injured' IS NULL").fetchone()
         assert result[0] == 0, "There are NULL values in No Injured column"
 
+
         # Check column names for socioeconomics
         df = pd.read_sql_query("PRAGMA table_info(socioeconomics)", conn)
-        columns = df['name'].tolist()
-        expected_columns = ['Country', 'Country Code', 'IncomeGroup', 'Year', 'Life Expectancy World Bank', 'Prevelance of Undernourishment', 'CO2', 'Health Expenditure %', 'Education Expenditure %', 'Unemployment', 'Sanitation', 'Injuries', 'Communicable', 'NonCommunicable']
-        assert set(columns) == set(expected_columns), f"Columns in socioeconomics do not match: {columns}"
+        columns = df[['name', 'type']].values.tolist()
+        expected_columns = [
+            ['Country', 'TEXT'], ['Country Code', 'TEXT'], ['IncomeGroup', 'TEXT'], 
+            ['Year', 'BIGINT'], ['Life Expectancy World Bank', 'FLOAT'], 
+            ['Prevelance of Undernourishment', 'FLOAT'], ['CO2', 'FLOAT'], 
+            ['Health Expenditure %', 'FLOAT'], ['Education Expenditure %', 'FLOAT'], 
+            ['Unemployment', 'FLOAT'], ['Sanitation', 'FLOAT'], ['Injuries', 'FLOAT'], 
+            ['Communicable', 'FLOAT'], ['NonCommunicable', 'FLOAT']
+        ]
+        assert columns == expected_columns, f"Columns and types in socioeconomics do not match: {columns}"
 
         # Check data integrity for socioeconomics
         result = conn.execute("SELECT COUNT(*) FROM socioeconomics WHERE 'Education Expenditure %' IS NULL").fetchone()
         assert result[0] == 0, "There are NULL values in Education Expenditure % column"
 
-        # Check column names for disaster_risk
+        # Check column names and datatype for disaster_risk
         df = pd.read_sql_query("PRAGMA table_info(disaster_risk)", conn)
-        columns = df['name'].tolist()
-        expected_columns = ['Country', 'Country Code', 'Year', 'World Risk Index', 'Exposure', 'Vulnerability', 
-                            'Susceptibility', 'Lack of Coping Capabilities', 'Lack of Adaptive Capabilities']
-        assert set(columns) == set(expected_columns), f"Columns in disaster_risk do not match: {columns}"
+        columns = df[['name', 'type']].values.tolist()
+        expected_columns = [
+            ['Country', 'TEXT'], ['Country Code', 'TEXT'], ['Year', 'BIGINT'], 
+            ['World Risk Index', 'FLOAT'], ['Exposure', 'FLOAT'], ['Vulnerability', 'FLOAT'], 
+            ['Susceptibility', 'FLOAT'], ['Lack of Coping Capabilities', 'FLOAT'], 
+            ['Lack of Adaptive Capabilities', 'FLOAT']
+        ]
+        assert columns == expected_columns, f"Columns and types in disaster_risk do not match: {columns}"
 
         # Check data integrity for disaster_risk
         result = conn.execute("SELECT COUNT(*) FROM disaster_risk WHERE 'World Risk Index' IS NULL").fetchone()
         assert result[0] == 0, "There are NULL values in World Risk Index column"
-        
+
+
         print("All tests passed successfully!")
 
     except Exception as e:
