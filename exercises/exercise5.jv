@@ -1,0 +1,74 @@
+pipeline StopsPipeline
+{
+
+   
+
+    block StopsExtractor oftype HttpExtractor 
+    {
+        url: "https://gtfs.rhoenenergie-bus.de/GTFS.zip";
+    } 
+
+    block StopsArchiveInterpreter oftype ArchiveInterpreter 
+    {
+        archiveType: "zip";
+
+    }
+    block StopsFilePicker oftype FilePicker      
+    {
+
+        // Here, we specify the path where the file shall be downloaded from.
+        path: "/stops.txt";
+    }
+    block StopsTextFileInterpreter oftype TextFileInterpreter {encoding:"utf8";}
+    block StopsCSVInterpreter oftype CSVInterpreter 
+    {
+        delimiter: ",";
+        enclosing: '"';
+    }
+    
+
+   
+
+    block StopsTableInterpreter oftype TableInterpreter 
+    {
+        header : true;
+        columns : [
+            "stop_id" oftype integer,
+            "stop_name" oftype text,
+            "stop_lat" oftype Geocoordinates,
+            "stop_lon" oftype Geocoordinates,
+            "zone_id" oftype Zone,
+        ];
+    }
+    // ============================================================================
+    block StopsLoader oftype SQLiteLoader 
+    {
+        file: "gtfs.sqlite";
+        table: "stops";
+
+    }
+  
+
+
+    // stop_lat/stop_lon must be a geographic coordinates between -90 and 90, including upper/lower bounds
+    constraint Coordinates on decimal:
+        value >= -90 and value <= 90;
+    valuetype Geocoordinates oftype decimal {
+        constraints:[Coordinates];
+    }
+    // Only keep stops from zone 1645
+    constraint ZoneConstraint on integer:
+        value == 1645;
+    valuetype Zone oftype integer {
+        constraints:[ZoneConstraint];
+    }
+    
+    StopsExtractor
+        -> StopsArchiveInterpreter
+        -> StopsFilePicker
+        -> StopsTextFileInterpreter
+        -> StopsCSVInterpreter 
+        -> StopsTableInterpreter
+        -> StopsLoader;
+
+}
