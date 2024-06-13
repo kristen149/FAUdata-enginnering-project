@@ -1,12 +1,13 @@
 import os
 import pandas as pd
 import sqlite3
-
+import unittest
 def test_pipeline(database_path):
+    conn = None
     try:
-        # Get the directory of the current script
+        # Get the directory
         script_dir = os.path.dirname(__file__)
-        # Construct the full path to the database file
+        # Construct the full path 
         full_db_path = os.path.join(script_dir, database_path)
 
         # Connect to the SQLite database
@@ -84,6 +85,12 @@ def test_pipeline(database_path):
         # Close the connection
         if conn:
             conn.close()
-
-# Assuming database_path is the path to the SQLite database
-test_pipeline('../data/database.sqlite')
+            
+class TestPipeline (unittest.TestCase):
+    def test_pipeline(self):
+        database_path = '../data/database.sqlite'
+        test_pipeline(database_path)
+    
+    
+if __name__ == '__main__':
+    unittest.main()
