@@ -4,10 +4,10 @@
 set -e
 
 # Change the directory to project
-cd "$(dirname "$0")/project"
+cd "$(dirname "$0")"
 
 # Run the test script
-py project/test.py
+py test.py
 
 
-echo "All tests ran successfully!"
+echo "All tests passed (Final test)"
