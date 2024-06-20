@@ -25,6 +25,7 @@ jobs:
       run: |
         mkdir -p data
         sqlite3 data/database.sqlite <<EOF
+        DROP TABLE IF EXISTS extreme_weather_events;
         CREATE TABLE extreme_weather_events (
           Year BIGINT,
           Seq BIGINT,
@@ -54,6 +55,7 @@ jobs:
           Geo_Locations TEXT
         );
 
+        DROP TABLE IF EXISTS socioeconomics;
         CREATE TABLE socioeconomics (
           Country TEXT,
           Country_Code TEXT,
@@ -71,6 +73,7 @@ jobs:
           NonCommunicable FLOAT
         );
 
+        DROP TABLE IF EXISTS disaster_risk;
         CREATE TABLE disaster_risk (
           Country TEXT,
           Country_Code TEXT,
