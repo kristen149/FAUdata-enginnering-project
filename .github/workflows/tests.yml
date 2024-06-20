@@ -1,0 +1,94 @@
+name: testPipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas requests sqlite3 unittest
+
+    - name: Create database and tables
+      run: |
+        mkdir -p data
+        sqlite3 data/database.sqlite <<EOF
+        CREATE TABLE extreme_weather_events (
+          Year BIGINT,
+          Seq BIGINT,
+          Disaster_Group TEXT,
+          Disaster_Subgroup TEXT,
+          Disaster_Type TEXT,
+          Disaster_Subtype TEXT,
+          Event_Name TEXT,
+          Country TEXT,
+          Country_Code TEXT,
+          Location TEXT,
+          Origin TEXT,
+          Associated_Dis TEXT,
+          Appeal TEXT,
+          Declaration TEXT,
+          Aid_Contribution FLOAT,
+          Dis_Mag_Value FLOAT,
+          Dis_Mag_Scale TEXT,
+          Local_Time TEXT,
+          Total_Deaths FLOAT,
+          No_Injured FLOAT,
+          No_Affected FLOAT,
+          No_Homeless FLOAT,
+          Total_Affected FLOAT,
+          "Total_Damages_('000_US$)" FLOAT,
+          CPI FLOAT,
+          Geo_Locations TEXT
+        );
+
+        CREATE TABLE socioeconomics (
+          Country TEXT,
+          Country_Code TEXT,
+          IncomeGroup TEXT,
+          Year BIGINT,
+          Life_Expectancy_World_Bank FLOAT,
+          Prevelance_of_Undernourishment FLOAT,
+          CO2 FLOAT,
+          Health_Expenditure_Pct FLOAT,
+          Education_Expenditure_Pct FLOAT,
+          Unemployment FLOAT,
+          Sanitation FLOAT,
+          Injuries FLOAT,
+          Communicable FLOAT,
+          NonCommunicable FLOAT
+        );
+
+        CREATE TABLE disaster_risk (
+          Country TEXT,
+          Country_Code TEXT,
+          Year BIGINT,
+          World_Risk_Index FLOAT,
+          Exposure FLOAT,
+          Vulnerability FLOAT,
+          Susceptibility FLOAT,
+          Lack_of_Coping_Capabilities FLOAT,
+          Lack_of_Adaptive_Capabilities FLOAT
+        );
+        EOF
+
+    - name: Run tests
+      run: |
+        python -m unittest discover -s . -p "*.py"
