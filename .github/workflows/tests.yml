@@ -21,15 +21,11 @@ jobs:
       with:
         python-version: '3.8'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pandas requests sqlite3 unittest
-
     - name: Create database and tables
       run: |
         mkdir -p data
         sqlite3 data/database.sqlite <<EOF
+        DROP TABLE IF EXISTS extreme_weather_events;
         CREATE TABLE extreme_weather_events (
           Year BIGINT,
           Seq BIGINT,
@@ -59,6 +55,7 @@ jobs:
           Geo_Locations TEXT
         );
 
+        DROP TABLE IF EXISTS socioeconomics;
         CREATE TABLE socioeconomics (
           Country TEXT,
           Country_Code TEXT,
@@ -76,6 +73,7 @@ jobs:
           NonCommunicable FLOAT
         );
 
+        DROP TABLE IF EXISTS disaster_risk;
         CREATE TABLE disaster_risk (
           Country TEXT,
           Country_Code TEXT,
